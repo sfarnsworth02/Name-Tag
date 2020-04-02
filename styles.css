@@ -8,7 +8,7 @@ div {
     background-color: red;
     color: whitesmoke;
     border-radius: 30px;
-    width: 50vh;
+    width: 100vh;
     height: 275px;
     display: flex;
     flex-direction: column;
@@ -39,4 +39,12 @@ div {
     align-items: center;
     font-size: 50px;
     font-weight: 700;
+}
+
+form { 
+    margin: 30px;
+}
+
+button {
+    margin: 30px;
 }

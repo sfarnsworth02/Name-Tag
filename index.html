@@ -3,12 +3,65 @@
     <head>
         <title>Hello there!</title>
         <link rel="stylesheet" href="styles.css">
+        
     </head>
     <body>
         <div>
             <p class="intro-start">Hello</p>
             <p class="intro-end">my name is</p>
-            <p class="name">Sarah</p>
+            <p id="name" class="name"></p>
         </div>
+        <form id="controls" name="controls">
+            <label>Change the name:</label>
+            <input id="newName" type="text" />
+            <br/>
+            <input id="inputName" type="submit" name="inputName" value="Click to enter">
+        </form>
+
+        <script type="text/javascript">
+
+            //  ------  ONLOAD VARIABLES  ------ 
+            let currentName = document.getElementById('name').innerText;
+            let newName = document.getElementById('newName').value;
+            let name = document.getElementById('name');
+
+            // ------  UPDATE DOM FUNCTION ------ 
+            function updateName()
+            {
+                if (currentName == "")  
+                // this should only run when loading or if change name field is empty
+                // currently if change name field is empty I have to double click ????
+                // AND I get a violation error 'click' handler took 2745ms
+                {
+                    let newName = prompt("What is your name?", "");
+                    name.textContent = newName;
+                } else 
+                {
+                    name.textContent = document.getElementById('newName').value;
+                };
+            }
+            updateName();
+
+            // ------  ADD EVENT LISTENER TO WHOLE FORM  ------ 
+            // find out why or IF this is necessary
+            const form = document.getElementById('controls');
+            form.addEventListener('submit', function(event)
+            {
+                event.preventDefault();
+            });
+
+            // ------ ACTION VARIABLES USED IN EVENT FUNCTIONS ------ 
+            const inputName  = document.getElementById('inputName');
+
+            // ------  EVENT FUNCTIONS ------ 
+            inputName.addEventListener('click', function(event) // not sure if newName is needed as a parameter(scope)
+            {
+                event.preventDefault();
+                // move new name to the current name
+                currentName = name.textContent;
+                updateName();
+            });
+            
+        </script>
     </body>
 </html>
